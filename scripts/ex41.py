@@ -50,12 +50,12 @@ def jaccard_dist(arr1, arr2):
   """
 
   # Intersection: Sum of element-wise AND comparison (True is treated as 1)
-  intersection = sum(np.logical_and(arr1, arr2))
+  intersection = np.sum(np.logical_and(arr1, arr2))
 
   # Union: Sum of element-wise OR comparison (True is treated as 1)
-  union = sum(np.logical_or(arr1, arr2))
+  union = np.sum(np.logical_or(arr1, arr2))
 
-  jaccard_dist = 1 - intersection / float(union)
+  jaccard_dist = 1 - intersection / union
 
   return jaccard_dist
 
@@ -70,7 +70,8 @@ mat1000 = pickle.load(open('data/data_1000points_1000dims.dat', 'rb'), encoding=
 mat10000 = pickle.load(open('data/data_10000points_10000dims.dat', 'rb'), encoding='latin1') 
 mat100000 = pickle.load(open('data/data_100000points_100000dims.dat', 'rb'), encoding='latin1') 
 
-
+mat100000dense = np.asarray(mat100000.todense())
+print(jaccard_dist(mat100000dense[0], mat100000dense[1]))
 
 
 #print('\nmat100\n', type(mat100))
